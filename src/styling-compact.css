@@ -5,44 +5,44 @@
 
 .amUfYqLTZOvGsn {
   /* main card text container */
-  min-height: 24px !important;
+  min-height: 0px !important;
 }
 
 .D7qoLaQ_ABp2jD /* members icons parent div */ {
   position: absolute !important;
-  top: 3px !important;
-  right: 7px !important;
+  top: 2px !important;
+  right: 6px !important;
 }
 
 .D7qoLaQ_ABp2jD * {
   /* members icons */
-  width: 14px !important;
-  height: 14px !important;
-  line-height: 14px !important;
-  background-size: 14px !important;
+  width: 13px !important;
+  height: 13px !important;
+  line-height: 13px !important;
+  background-size: 13px !important;
 }
 
-.jS9THwzyUow79A > * {
-  /* icon bar */
-  width: 10px !important;
-  height: 10px !important;
+.BOkIMdOUAQVOQk {
+  /* status icons parent div*/
+  width: 14px !important;
+  height: 14px !important;
+}
+
+.BOkIMdOUAQVOQk > * > * {
+  width: 14px !important;
+  height: 14px !important;
 }
 
 .jS9THwzyUow79A {
-  /* icon bar */
+  /* status icon bar */
   position: absolute !important;
-  bottom: 0 !important;
-  right: 6px !important;
+  bottom: -3px !important;
+  right: 2px !important;
 }
 
 .T8p0iZePEoaO1J {
-  /* card icon status texts */
+  /* status icon texts */
   display: none !important;
-}
-
-.css-1aufzry/* card icons */ {
-  width: 10px !important;
-  height: 10px !important;
 }
 
 .NdQKKfeqJDDdX3 {
@@ -61,7 +61,10 @@
 
 .Ln_WDlu2A5sGGO {
   /* color label line */
-  margin-bottom: 2px !important;
+  margin-bottom: 0px !important;
+  position: absolute !important;
+  top: 5px !important;
+  left: 6px !important;
 }
 
 .YjsahfcWMjpk4W  /* color labels */ {
@@ -74,23 +77,23 @@
   /* card content padding */
   padding-top: 4px !important;
   padding-right: 8px !important;
-  padding-bottom: 0px !important;
+  padding-bottom: 4px !important;
   padding-left: 8px !important;
 }
 
 .amUfYqLTZOvGsn:has(.D7qoLaQ_ABp2jD) {
   /* if card has members, add padding to top */
-  padding-top: 14px !important;
-}
-
-.amUfYqLTZOvGsn:has(.Ln_WDlu2A5sGGO) {
-  /* if card has labels, overwrite the top padding again, because the cards labels will increase the height of the card */
-  padding-top: 4px !important;
+  padding-top: 12px !important;
 }
 
 .amUfYqLTZOvGsn:has(.BOkIMdOUAQVOQk) {
   /* if there are status labels increase the bottom padding of the card */
-  padding-bottom: 10px !important;
+  padding-bottom: 12px !important;
+}
+
+.amUfYqLTZOvGsn:has(.Ln_WDlu2A5sGGO) {
+  /* if card has labels, overwrite the top padding again, because the cards labels will increase the height of the card */
+  padding-top: 12px !important;
 }
 
 .CEjhSnb7IOaNG5 {

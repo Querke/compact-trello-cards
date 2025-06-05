@@ -1,4 +1,3 @@
-
 ![Promo](git-promo.png)
 
 # Compact Trello Cards
@@ -10,6 +9,4 @@ This extension tries to make the cards in a list as compact, minimal and refined
 > Click here to download: https://chromewebstore.google.com/detail/trello-compact-cards/loklidkmimnapjdbjjgcpfdmdkfnbgjj
 
 ![Comparison](Comparison.png)
-![Before](Before.png)
-![After](After.png)
 ![option](option.png)
