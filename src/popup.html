@@ -11,27 +11,47 @@
       label {
         display: flex;
         align-items: center;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        padding: 4px;
-        background: #ffffff;
+        padding: 2px;
       }
 
       h3 {
         padding: 2px;
       }
 
-      input[type="checkbox"] {
-        margin-right: 12px;
+      .mode-option {
+        padding: 6px 12px;
+        margin: 4px 0;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        background-color: #fff;
+        cursor: pointer;
+      }
+
+      .mode-option.selected {
+        background-color: #0079bf;
+        color: white;
+        border-color: #0079bf;
       }
     </style>
   </head>
   <body>
-    <h3>Trello Compact Cards</h3>
-    <label>
-      <input type="checkbox" id="toggle-css" />
-      Enable compact trello cards
-    </label>
+    <h3>Trello Card Styling</h3>
+    <!-- <label>
+      <span style="margin-right: 8px">Mode:</span>
+      <select
+        id="mode-select"
+        style="width: 100%; border-radius: 6px; padding: 4px"
+      >
+        <option value="none">None</option>
+        <option value="compact">Compact</option>
+        <option value="tiny">Tiny</option>
+      </select>
+    </label> -->
+    <div id="mode-options">
+      <div class="mode-option" data-mode="none">None</div>
+      <div class="mode-option" data-mode="compact">Compact</div>
+      <div class="mode-option" data-mode="tiny">Tiny</div>
+    </div>
     <script src="popup.js"></script>
   </body>
 </html>

@@ -1,0 +1,99 @@
+.KWQlnMvysRK4fI {
+  /* main card container */
+  min-height: 0px !important;
+}
+
+.amUfYqLTZOvGsn {
+  /* main card text container */
+  min-height: 24px !important;
+}
+
+.D7qoLaQ_ABp2jD /* members icons parent div */ {
+  position: absolute !important;
+  top: 3px !important;
+  right: 7px !important;
+}
+
+.D7qoLaQ_ABp2jD * {
+  /* members icons */
+  width: 14px !important;
+  height: 14px !important;
+  line-height: 14px !important;
+  background-size: 14px !important;
+}
+
+.jS9THwzyUow79A > * {
+  /* icon bar */
+  width: 10px !important;
+  height: 10px !important;
+}
+
+.jS9THwzyUow79A {
+  /* icon bar */
+  position: absolute !important;
+  bottom: 0 !important;
+  right: 6px !important;
+}
+
+.T8p0iZePEoaO1J {
+  /* card icon status texts */
+  display: none !important;
+}
+
+.css-1aufzry/* card icons */ {
+  width: 10px !important;
+  height: 10px !important;
+}
+
+.NdQKKfeqJDDdX3 {
+  /* Card text overflow max lines */
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 3 !important; /* number of lines */
+  -webkit-box-orient: vertical !important;
+  margin-bottom: 0px !important;
+}
+
+.W21VDtqqicaQTk /* preview image */ {
+  max-height: 30px !important;
+}
+
+.Ln_WDlu2A5sGGO {
+  /* color label line */
+  margin-bottom: 2px !important;
+}
+
+.YjsahfcWMjpk4W  /* color labels */ {
+  min-width: 20px !important;
+  max-width: 20px !important;
+  height: 8px !important;
+}
+
+.amUfYqLTZOvGsn {
+  /* card content padding */
+  padding-top: 4px !important;
+  padding-right: 8px !important;
+  padding-bottom: 0px !important;
+  padding-left: 8px !important;
+}
+
+.amUfYqLTZOvGsn:has(.D7qoLaQ_ABp2jD) {
+  /* if card has members, add padding to top */
+  padding-top: 14px !important;
+}
+
+.amUfYqLTZOvGsn:has(.Ln_WDlu2A5sGGO) {
+  /* if card has labels, overwrite the top padding again, because the cards labels will increase the height of the card */
+  padding-top: 4px !important;
+}
+
+.amUfYqLTZOvGsn:has(.BOkIMdOUAQVOQk) {
+  /* if there are status labels increase the bottom padding of the card */
+  padding-bottom: 10px !important;
+}
+
+.CEjhSnb7IOaNG5 {
+  /* spacing between cards */
+  height: 6px !important;
+}

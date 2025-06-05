@@ -1,9 +1,20 @@
-const toggle = document.getElementById("toggle-css");
+const options = document.querySelectorAll(".mode-option");
 
-chrome.storage.sync.get("enabled", (data) => {
-  toggle.checked = data.enabled ?? true;
+chrome.storage.sync.get("mode", (data) => {
+  const current = data.mode || "compact";
+  options.forEach((el) => {
+    if (el.dataset.mode === current) {
+      el.classList.add("selected");
+    }
+  });
 });
 
-toggle.addEventListener("change", () => {
-  chrome.storage.sync.set({ enabled: toggle.checked });
+options.forEach((el) => {
+  el.addEventListener("click", () => {
+    const selectedMode = el.dataset.mode;
+    chrome.storage.sync.set({ mode: selectedMode });
+
+    options.forEach((opt) => opt.classList.remove("selected"));
+    el.classList.add("selected");
+  });
 });
