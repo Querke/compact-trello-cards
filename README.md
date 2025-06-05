@@ -1,4 +1,4 @@
-![Promo](promo.png)
+![Promo](git-promo.png)
 
 # Compact Trello Cards
 
