@@ -30,26 +30,35 @@ chrome.storage.onChanged.addListener(async (changes, area) => {
 });
 
 // Reapply styling when Trello tab is reloaded or navigated
-chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
   if (
     changeInfo.status !== "complete" ||
     !tab.url?.startsWith("https://trello.com")
   )
     return;
 
-  chrome.storage.sync.get("mode", (data) => {
-    const mode = data.mode || "compact";
+  // Always remove both styles first
+  await chrome.scripting
+    .removeCSS({ target: { tabId: tab.id }, files: ["styling-compact.css"] })
+    .catch(() => {});
+  await chrome.scripting
+    .removeCSS({ target: { tabId: tab.id }, files: ["styling-tiny.css"] })
+    .catch(() => {});
 
-    if (mode === "compact") {
-      chrome.scripting.insertCSS({
-        target: { tabId },
-        files: ["styling-compact.css"],
-      });
-    } else if (mode === "tiny") {
-      chrome.scripting.insertCSS({
-        target: { tabId },
-        files: ["styling-tiny.css"],
-      });
-    }
-  });
+  const data = await new Promise((resolve) =>
+    chrome.storage.sync.get("mode", resolve)
+  );
+  const mode = data.mode || "compact";
+
+  if (mode === "compact") {
+    await chrome.scripting.insertCSS({
+      target: { tabId },
+      files: ["styling-compact.css"],
+    });
+  } else if (mode === "tiny") {
+    await chrome.scripting.insertCSS({
+      target: { tabId },
+      files: ["styling-tiny.css"],
+    });
+  }
 });

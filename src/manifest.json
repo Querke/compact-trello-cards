@@ -1,6 +1,6 @@
 {
 	"name": "Trello compact cards",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"description": "Refines Trello cards for a compact, minimal look without losing original style. Cleaner, easier lists with no functionality impact.",
 	"manifest_version": 3,
 	"permissions": [
