@@ -24,25 +24,33 @@
 
 .BOkIMdOUAQVOQk {
   /* status icons parent div*/
-  width: 14px !important;
-  height: 14px !important;
+  width: fit-content !important;
+  height: 14px !important; 
+  padding: 0px !important;
 }
 
 .BOkIMdOUAQVOQk > * > * {
-  width: 14px !important;
-  height: 14px !important;
+  width: 12px !important;
+  height: 12px !important;
+}
+
+.PTI0Jl5N9qIXEm {
+  width: 12px !important;
+  height: 12px !important;
 }
 
 .jS9THwzyUow79A {
   /* status icon bar */
   position: absolute !important;
   bottom: -3px !important;
-  right: 2px !important;
+  right: 4px !important;
+  column-gap: 6px !important;
 }
 
-.T8p0iZePEoaO1J {
+.T8p0iZePEoaO1J  {
   /* status icon texts */
-  display: none !important;
+  font-size: 10px !important;;
+  padding: 0px !important;
 }
 
 .NdQKKfeqJDDdX3 {
@@ -88,7 +96,7 @@
 
 .amUfYqLTZOvGsn:has(.BOkIMdOUAQVOQk) {
   /* if there are status labels increase the bottom padding of the card */
-  padding-bottom: 12px !important;
+  padding-bottom: 14px !important;
 }
 
 .amUfYqLTZOvGsn:has(.Ln_WDlu2A5sGGO) {
