@@ -1,20 +1,40 @@
-.KWQlnMvysRK4fI {
+div[data-testid="trello-card"] {
   /* main card container */
   min-height: 0px !important;
 }
 
-.amUfYqLTZOvGsn {
-  /* main card text container */
+div[data-testid="trello-card"] > * {
+  /* main card container */
   min-height: 0px !important;
 }
 
-.D7qoLaQ_ABp2jD /* members icons parent div */ {
+/* If label exists: 4th child */
+div[data-testid="trello-card"]
+  > :first-child:has([data-testid="compact-card-label"])
+  > :nth-child(4),
+div[data-testid="trello-card"]
+  > :nth-child(2):has([data-testid="compact-card-label"])
+  > :nth-child(4) {
+  /* members icons parent div, 4th child */
   position: absolute !important;
   top: 2px !important;
   right: 6px !important;
 }
 
-.D7qoLaQ_ABp2jD * {
+/* If label does NOT exist: 3rd child */
+div[data-testid="trello-card"]
+  > :first-child:not(:has([data-testid="compact-card-label"]))
+  > :nth-child(3),
+div[data-testid="trello-card"]
+  > :nth-child(2):not(:has([data-testid="compact-card-label"]))
+  > :nth-child(3) {
+  /* members icons parent div, 3rd child */
+  position: absolute !important;
+  top: 2px !important;
+  right: 6px !important;
+}
+
+button[data-testid="card-front-member"] > * {
   /* members icons */
   width: 13px !important;
   height: 13px !important;
@@ -22,32 +42,23 @@
   background-size: 13px !important;
 }
 
-.BOkIMdOUAQVOQk {
-  /* status icons parent div*/
-  width: fit-content !important;
-  height: 14px !important; 
-  padding: 0px !important;
-}
-
-.BOkIMdOUAQVOQk > * > * {
-  width: 12px !important;
-  height: 12px !important;
-}
-
-.PTI0Jl5N9qIXEm {
-  width: 12px !important;
-  height: 12px !important;
-}
-
-.jS9THwzyUow79A {
+div[data-testid="card-front-badges"] {
   /* status icon bar */
   position: absolute !important;
   bottom: -3px !important;
   right: 4px !important;
   column-gap: 6px !important;
+  height: fit-content !important;
 }
 
-.T8p0iZePEoaO1J  {
+div[data-testid="card-front-badges"] > * {
+  /* status icons parent div*/
+  width: fit-content !important;
+  height: 14px !important;
+  padding: 0px !important;
+}
+
+div[data-testid="card-front-badges"] > * > :nth-child(2) {
   /* status icon texts */
   font-size: 10px !important;
   padding-top: 0px !important;
@@ -56,7 +67,18 @@
   padding-right: 2px !important;
 }
 
-.NdQKKfeqJDDdX3 {
+div[data-testid="card-front-badges"] > * > * > * {
+  /* status icons images */
+  width: 12px !important;
+  height: 12px !important;
+}
+
+div[data-testid="card-front-badges"] > * > * {
+  /* status icon parent div, making both icon and text width snug */
+  width: fit-content !important;
+}
+
+a[data-testid="card-name"] {
   /* Card text overflow max lines */
   overflow: hidden !important;
   text-overflow: ellipsis !important;
@@ -66,11 +88,12 @@
   margin-bottom: 0px !important;
 }
 
-.W21VDtqqicaQTk /* preview image */ {
-  max-height: 30px !important;
-}
-
-.Ln_WDlu2A5sGGO {
+div[data-testid="trello-card"]:has([data-testid="compact-card-label"])
+  > :first-child
+  > :first-child,
+div[data-testid="trello-card"]:has([data-testid="compact-card-label"])
+  > :nth-child(2)
+  > :first-child {
   /* color label line */
   margin-bottom: 0px !important;
   position: absolute !important;
@@ -78,36 +101,70 @@
   left: 6px !important;
 }
 
-.YjsahfcWMjpk4W  /* color labels */ {
+span[data-testid="compact-card-label"][data-expanded="false"] {
+  /* color labels */
   min-width: 20px !important;
   max-width: 20px !important;
   height: 8px !important;
 }
 
-.amUfYqLTZOvGsn {
-  /* card content padding */
+/* Card content padding */
+div[data-testid="trello-card"]:has([data-testid="card-front-cover"])
+  > :nth-child(2),
+div[data-testid="trello-card"]:not(:has([data-testid="card-front-cover"]))
+  > :first-child {
   padding-top: 4px !important;
   padding-right: 8px !important;
   padding-bottom: 4px !important;
   padding-left: 8px !important;
 }
 
-.amUfYqLTZOvGsn:has(.D7qoLaQ_ABp2jD) {
-  /* if card has members, add padding to top */
+/* If card has members, add padding to top */
+div[data-testid="trello-card"]:has([data-testid="card-front-cover"]):has(
+    [data-testid="card-front-member"]
+  )
+  > :nth-child(2),
+div[data-testid="trello-card"]:not(:has([data-testid="card-front-cover"])):has(
+    [data-testid="card-front-member"]
+  )
+  > :first-child {
   padding-top: 12px !important;
 }
 
-.amUfYqLTZOvGsn:has(.BOkIMdOUAQVOQk) {
-  /* if there are status labels increase the bottom padding of the card */
-  padding-bottom: 14px !important;
+/* If there are status labels, increase the bottom padding */
+div[data-testid="trello-card"]:has([data-testid="card-front-cover"]):has(
+    [data-testid="card-front-badges"]:not(:empty)
+  )
+  > :nth-child(2),
+div[data-testid="trello-card"]:not(:has([data-testid="card-front-cover"])):has(
+    [data-testid="card-front-badges"]:not(:empty)
+  )
+  > :first-child {
+  padding-bottom: 12px !important;
 }
 
-.amUfYqLTZOvGsn:has(.Ln_WDlu2A5sGGO) {
-  /* if card has labels, overwrite the top padding again, because the cards labels will increase the height of the card */
+/* If card has labels, overwrite the top padding */
+div[data-testid="trello-card"]:has([data-testid="card-front-cover"]):has(
+    [data-testid="compact-card-label"]
+  )
+  > :nth-child(2),
+div[data-testid="trello-card"]:not(:has([data-testid="card-front-cover"])):has(
+    [data-testid="compact-card-label"]
+  )
+  > :first-child {
   padding-top: 12px !important;
 }
 
-.CEjhSnb7IOaNG5 {
+div[data-testid="list-card-gap"] {
   /* spacing between cards */
   height: 6px !important;
+}
+
+/* do this last, to remove all padding added before to all children of trello card */
+div[data-testid="card-front-cover"] {
+  max-height: 30px !important;
+  /* padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important; */
 }
