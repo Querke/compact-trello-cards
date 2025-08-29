@@ -4,12 +4,8 @@ div[data-testid="trello-card"] {
 }
 
 /* If label exists: 4th child */
-div[data-testid="trello-card"]
-  > :first-child:has([data-testid="compact-card-label"])
-  > :nth-child(4),
-div[data-testid="trello-card"]
-  > :nth-child(2):has([data-testid="compact-card-label"])
-  > :nth-child(4) {
+div[data-testid="trello-card"] > :first-child:has([data-testid="compact-card-label"]) > :nth-child(4),
+div[data-testid="trello-card"] > :nth-child(2):has([data-testid="compact-card-label"]) > :nth-child(4) {
   /* members icons parent div, 4th child */
   position: absolute !important;
   top: -4px !important;
@@ -17,12 +13,8 @@ div[data-testid="trello-card"]
 }
 
 /* If label does NOT exist: 3rd child */
-div[data-testid="trello-card"]
-  > :first-child:not(:has([data-testid="compact-card-label"]))
-  > :nth-child(3),
-div[data-testid="trello-card"]
-  > :nth-child(2):not(:has([data-testid="compact-card-label"]))
-  > :nth-child(3) {
+div[data-testid="trello-card"] > :first-child:not(:has([data-testid="compact-card-label"])) > :nth-child(3),
+div[data-testid="trello-card"] > :nth-child(2):not(:has([data-testid="compact-card-label"])) > :nth-child(3) {
   /* members icons parent div, 3rd child */
   position: absolute !important;
   top: -4px !important;
@@ -57,12 +49,21 @@ div[data-testid="card-front-cover"] {
   max-height: 24px !important;
 }
 
-div[data-testid="trello-card"]:has([data-testid="compact-card-label"])
-  > :first-child
-  > :first-child,
-div[data-testid="trello-card"]:has([data-testid="compact-card-label"])
-  > :nth-child(2)
-  > :first-child {
+/* shadow and size on edit card button */
+button[data-testid="quick-card-editor-button"] {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+  width: 22px !important;
+  height: 22px !important;
+}
+
+/* scale down icon edit card button */
+button[data-testid="quick-card-editor-button"] > :first-child {
+  scale: 95% !important;
+}
+
+/* Position the color label pill. Only apply if the color label exists, and if the card had a preview image, select child nr 2 */
+div[data-testid="trello-card"]:has([data-testid="compact-card-label"]) > :first-child > :first-child,
+div[data-testid="trello-card"]:has([data-testid="card-front-cover"]):has([data-testid="compact-card-label"]) > :nth-child(2) > :first-child {
   /* color label line */
   position: absolute !important;
   left: 0px !important;
@@ -76,10 +77,8 @@ span[data-testid="compact-card-label"][data-expanded="false"] {
   height: 10px !important;
 }
 
-div[data-testid="trello-card"]:has([data-testid="card-front-cover"])
-  > :nth-child(2),
-div[data-testid="trello-card"]:not(:has([data-testid="card-front-cover"]))
-  > :first-child {
+div[data-testid="trello-card"]:has([data-testid="card-front-cover"]) > :nth-child(2),
+div[data-testid="trello-card"]:not(:has([data-testid="card-front-cover"])) > :first-child {
   /* card content padding */
   padding-top: 4px !important;
   padding-right: 8px !important;
