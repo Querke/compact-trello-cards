@@ -1,64 +1,61 @@
-// Listen for mode changes from the popup
-chrome.storage.onChanged.addListener(async (changes, area) => {
+// 1. Universal API wrapper: Uses "browser" if available (Firefox), otherwise wraps "chrome" (Chrome)
+const api =
+  typeof browser !== "undefined"
+    ? browser
+    : {
+        tabs: {
+          query: (o) => new Promise((r) => chrome.tabs.query(o, r)),
+          onUpdated: chrome.tabs.onUpdated, // Listeners are same in both
+        },
+        scripting: {
+          insertCSS: (o) => chrome.scripting.insertCSS(o), // Usually returns promise in Chrome, but we handle errors
+          removeCSS: (o) => chrome.scripting.removeCSS(o),
+        },
+        storage: {
+          onChanged: chrome.storage.onChanged,
+          sync: {
+            get: (k) => new Promise((r) => chrome.storage.sync.get(k, r)),
+          },
+        },
+      };
+
+// 2. Logic using the universal 'api' variable
+api.storage.onChanged.addListener(async (changes, area) => {
   if (area !== "sync" || !changes.mode) return;
 
-  const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+  const [tab] = await api.tabs.query({ active: true, currentWindow: true });
   if (!tab || !tab.id || !tab.url?.startsWith("https://trello.com")) return;
 
   const newMode = changes.mode.newValue;
 
-  // Always remove both styles first
-  await chrome.scripting
-    .removeCSS({ target: { tabId: tab.id }, files: ["styling-compact.css"] })
-    .catch(() => {});
-  await chrome.scripting
-    .removeCSS({ target: { tabId: tab.id }, files: ["styling-tiny.css"] })
-    .catch(() => {});
+  // CSS injection doesn't return data, so we can stick to native chrome for scripting if we just want to await completion
+  // Note: We use the raw chrome.scripting here because wrapping void promises is messy and unnecessary if we catch errors.
+  const target = { target: { tabId: tab.id } };
 
-  // Then inject the correct one, if needed
+  await chrome.scripting.removeCSS({ ...target, files: ["styling-compact.css"] }).catch(() => {});
+  await chrome.scripting.removeCSS({ ...target, files: ["styling-tiny.css"] }).catch(() => {});
+
   if (newMode === "compact") {
-    chrome.scripting.insertCSS({
-      target: { tabId: tab.id },
-      files: ["styling-compact.css"],
-    });
+    chrome.scripting.insertCSS({ ...target, files: ["styling-compact.css"] });
   } else if (newMode === "tiny") {
-    chrome.scripting.insertCSS({
-      target: { tabId: tab.id },
-      files: ["styling-tiny.css"],
-    });
+    chrome.scripting.insertCSS({ ...target, files: ["styling-tiny.css"] });
   }
 });
 
-// Reapply styling when Trello tab is reloaded or navigated
-chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
-  if (
-    changeInfo.status !== "complete" ||
-    !tab.url?.startsWith("https://trello.com")
-  )
-    return;
+api.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
+  if (changeInfo.status !== "complete" || !tab.url?.startsWith("https://trello.com")) return;
 
-  // Always remove both styles first
-  await chrome.scripting
-    .removeCSS({ target: { tabId: tab.id }, files: ["styling-compact.css"] })
-    .catch(() => {});
-  await chrome.scripting
-    .removeCSS({ target: { tabId: tab.id }, files: ["styling-tiny.css"] })
-    .catch(() => {});
+  // Use raw chrome for scripting actions (works in both for void actions)
+  const target = { target: { tabId: tab.id } };
+  await chrome.scripting.removeCSS({ ...target, files: ["styling-compact.css"] }).catch(() => {});
+  await chrome.scripting.removeCSS({ ...target, files: ["styling-tiny.css"] }).catch(() => {});
 
-  const data = await new Promise((resolve) =>
-    chrome.storage.sync.get("mode", resolve)
-  );
-  const mode = data.mode || "compact";
+  const data = await api.storage.sync.get("mode");
+  const currentMode = data.mode || "compact";
 
-  if (mode === "compact") {
-    await chrome.scripting.insertCSS({
-      target: { tabId },
-      files: ["styling-compact.css"],
-    });
-  } else if (mode === "tiny") {
-    await chrome.scripting.insertCSS({
-      target: { tabId },
-      files: ["styling-tiny.css"],
-    });
+  if (currentMode === "compact") {
+    chrome.scripting.insertCSS({ ...target, files: ["styling-compact.css"] });
+  } else if (currentMode === "tiny") {
+    chrome.scripting.insertCSS({ ...target, files: ["styling-tiny.css"] });
   }
 });
