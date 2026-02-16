@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
     <style>
@@ -52,6 +52,18 @@
       <div class="mode-option" data-mode="none">None</div>
       <div class="mode-option" data-mode="compact">Compact</div>
       <div class="mode-option" data-mode="tiny">Tiny</div>
+    </div>
+
+    <label style="margin-top: 12px; display: flex; justify-content: space-between">
+      <span>List Width:</span>
+      <input type="text" id="width-value" style="width: 50px; text-align: right; padding: 2px; border: 1px solid #ccc; border-radius: 4px" placeholder="Auto" />
+    </label>
+    <div style="padding: 0 4px">
+      <input type="range" id="width-slider" min="1" max="6" step="1" style="width: 100%; margin-bottom: 0" />
+      <div style="display: flex; justify-content: space-between; font-size: 10px; color: #666; margin-top: -4px">
+        <span>Very Narrow</span>
+        <span>Auto</span>
+      </div>
     </div>
     <script src="popup.js"></script>
   </body>
