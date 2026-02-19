@@ -10,6 +10,7 @@ const api =
         scripting: {
           insertCSS: (o) => chrome.scripting.insertCSS(o), // Usually returns promise in Chrome, but we handle errors
           removeCSS: (o) => chrome.scripting.removeCSS(o),
+          executeScript: (o) => chrome.scripting.executeScript(o),
         },
         storage: {
           onChanged: chrome.storage.onChanged,
@@ -58,4 +59,12 @@ api.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
   } else if (currentMode === "tiny") {
     chrome.scripting.insertCSS({ ...target, files: ["styling-tiny.css"] });
   }
+
+  // Inject width adjuster
+  api.scripting
+    .executeScript({
+      ...target,
+      files: ["width-adjuster.js"],
+    })
+    .catch(() => {});
 });

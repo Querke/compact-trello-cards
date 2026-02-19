@@ -15,6 +15,7 @@ const FILES_TO_PACK = [
   "popup.js",
   "styling-compact.css",
   "styling-tiny.css",
+  "width-adjuster.js",
   "icon-48.png",
   "icon-128.png",
 ];
