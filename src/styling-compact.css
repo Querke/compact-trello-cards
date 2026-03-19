@@ -59,10 +59,9 @@ div[data-testid="card-front-badges"] > * > :nth-child(2) {
   padding-right: 2px !important;
 }
 
-div[data-testid="card-front-badges"] > * > * > * {
-  /* status icons images */
-  width: 12px !important;
-  height: 12px !important;
+div[data-testid="card-front-badges"] svg {
+  width: 10px !important;
+  height: 10px !important;
 }
 
 div[data-testid="card-front-badges"] > * > * {
